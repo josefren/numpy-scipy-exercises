@@ -104,11 +104,19 @@ def rand_3d_matrix_py(size):
     return [[[random() for _ in range(size)] for _ in range(size)] for _ in range(size)]
 
 # Create a 8x8 matrix and fill it with a checkerboard pattern
-#
-# Z = np.zeros((8,8),dtype=int)
-# Z[1::2,::2] = 1
-# Z[::2,1::2] = 1
-# print(Z)
+def checkerboard_np(size):
+    Z = np.zeros((size, size), dtype=int)
+    Z[1::2, ::2] = 1
+    Z[::2, 1::2] = 1
+    return Z
+
+def checkerboard_py(size):
+    """
+    >>> checkerboard_py(3)
+    [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
+    """
+    return [[(r + c) & 1 for c in range(size)] for r in range(size)]
+
 # Create a 10x10 array with random values and find the minimum and maximum values
 #
 # Z = np.random.random((10,10))

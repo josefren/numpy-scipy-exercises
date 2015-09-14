@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
 from datetime import datetime as dt
 import itertools
+from random import randint
 
 import numpy100 as n100
 
@@ -27,6 +29,10 @@ def from_to_middle_cycle(start=1, end=101):
         n = next(c)[0]
         yield [n, n // 2]
 
+def randint_gen(low=0, high=100):
+    while 1:
+        yield [randint(low, high)]
+
 compare([n100.zeroes_py, n100.zeroes_np], from_to_cycle, comment="Small arrays")
 compare([n100.zeroes_py, n100.zeroes_np], from_to_cycle, [10 ** 6, 10 ** 6 + 1000],
         comment="Large arrays")
@@ -34,3 +40,7 @@ compare([n100.zeroes_one_unit_py, n100.zeroes_one_unit_np], from_to_middle_cycle
         comment="Small arrays")
 compare([n100.zeroes_one_unit_py, n100.zeroes_one_unit_np], from_to_middle_cycle,
         [10 ** 6, 10 ** 6 + 1000], comment="Large arrays")
+compare([n100.checkerboard_np, n100.checkerboard_py], randint_gen,
+        comment="Small arrays", repeat=10)
+compare([n100.checkerboard_np, n100.checkerboard_py], randint_gen, [10 ** 4, 10 ** 4 + 100],
+        comment="Large arrays", repeat=1)
