@@ -146,17 +146,23 @@ def checkerboard_tile_np(size):
     repeat = size // 2 + 1
     Z = np.tile(part, (repeat, repeat))
     return Z[:size, :size]
-#
-# Z = np.tile( np.array([[0,1],[1,0]]), (4,4))
-# print(Z)
+
+def random_square_matr(size):
+    return np.random.random((size, size))
+
 # Normalize a 5x5 random matrix (between 0 and 1)
-#
-# Z = np.random.random((5,5))
-# Zmax, Zmin = Z.max(), Z.min()
-# Z = (Z - Zmin)/(Zmax - Zmin)
-# print(Z)
+def normalized_random_np(size):
+    matr = random_square_matr(size)
+    m_min, m_max = matr.min(), matr.max()
+    matr -= m_min
+    matr /= m_max - m_min
+    return matr
+
 # Multiply a 5x3 matrix by a 3x2 matrix (real matrix product)
-#
+def ones_product(r1, c1, c2):
+    r2 = c1
+    return np.dot(np.ones((r1, c1)), np.ones((r2, c2)))
+
 # Z = np.dot(np.ones((5,3)), np.ones((3,2)))
 # print(Z)
 # Create a 5x5 matrix with row values ranging from 0 to 4
