@@ -13,6 +13,7 @@ def zeroes_np(n):
 def zeroes_py(n):
     return [0] * n
 
+# ================================================================
 # Create a null vector of size 10 but the fifth value which is 1
 def zeroes_one_unit_np(size, pos):
     a = np.zeros(size)
@@ -25,15 +26,49 @@ def zeroes_one_unit_py(size, pos):
     a[pos] = 1
     return a
 
+# ================================================================
 # Create a vector with values ranging from 10 to 49
-# Z = np.arange(10, 50)
-# print(Z)
+def range_np(start, end):
+    return np.arange(start, end)
+
+
+def range_py(start, end):
+    return list(range(start, end))
 
 # Create a 3x3 matrix with values ranging from 0 to 8
-#
-# Z = np.arange(9).reshape(3,3)
-# print(Z)
+def square_matrix_range_np(size):
+    """
+    >>> square_matrix_range_np(3)
+    array([[0, 1, 2],
+           [3, 4, 5],
+           [6, 7, 8]])
+    """
+    max_value = size ** 2
+    return np.arange(max_value).reshape(size, size)
+
+
+def square_matrix_range_py(size):
+    """
+    >>> square_matrix_range_py(3)
+    [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+    """
+    return [[i * size + j for j in range(size)] for i in range(size)]
+
 # Find indices of non-zero elements from [1,2,0,0,4,0]
+def non_zero_indicies_np(ar):
+    """
+    >>> non_zero_indicies_np([1, 2, 0, 0, 4, 0])
+    array([0, 1, 4])
+    """
+    return np.nonzero(ar)[0]
+
+def non_zero_indicies_py(ar):
+    """
+    >>> non_zero_indicies_py([1, 2, 0, 0, 4, 0])
+    [0, 1, 4]
+    """
+    return [i for i in range(len(ar)) if ar[i]]
+
 #
 # nz = np.nonzero([1,2,0,0,4,0])
 # print(nz)
@@ -488,3 +523,8 @@ def zeroes_one_unit_py(size, pos):
 #
 # Z = np.random.randint(0,2,(50,50))
 # for i in range(100): Z = iterate(Z)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

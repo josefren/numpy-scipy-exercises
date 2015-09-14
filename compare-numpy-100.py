@@ -1,5 +1,4 @@
 from datetime import datetime as dt
-from random import randint
 import itertools
 
 import numpy100 as n100
