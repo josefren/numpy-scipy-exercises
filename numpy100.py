@@ -81,11 +81,20 @@ def identity_matrix_py(size):
     return [[int(r == c) for c in range(size)] for r in range(size)]
 
 
-# Z = np.eye(3)
-# print(Z)
 # Create a 5x5 matrix with values 1,2,3,4 just below the diagonal
-#
-# Z = np.diag(1+np.arange(4),k=-1)
+def range_below_diagonal_np(size):
+    return np.diag(1 + np.arange(size - 1), k=-1)
+
+
+def range_below_diagonal_py(size):
+    """
+    >>> range_below_diagonal_py(5)
+    [[0, 0, 0, 0, 0], [1, 0, 0, 0, 0], [0, 2, 0, 0, 0], [0, 0, 3, 0, 0], [0, 0, 0, 4, 0]]
+    """
+    return [[r if r - c == 1 else 0 for c in range(size)] for r in range(size)]
+
+
+
 # print(Z)
 # Create a 3x3x3 array with random values
 #
