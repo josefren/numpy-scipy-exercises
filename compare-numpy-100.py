@@ -9,6 +9,7 @@ import numpy100 as n100
 def compare(functions, args_generator, gen_init=None, repeat=1000, comment="Default"):
     if gen_init is None:
         gen_init = []
+    print(">" * 30)
     for f in functions:
         fname = f.__name__
         start = dt.now()
@@ -16,7 +17,9 @@ def compare(functions, args_generator, gen_init=None, repeat=1000, comment="Defa
             f(*args)
         end = dt.now()
         total = (end - start).total_seconds()
+
         print("{comment}: {fname} run {repeat} times at {total}".format(**locals()))
+    print("<" * 30)
 
 def from_to_cycle(start=0, end=100):
     c = itertools.cycle(range(start, end))
@@ -44,3 +47,11 @@ compare([n100.checkerboard_np, n100.checkerboard_py], randint_gen,
         comment="Small arrays", repeat=10)
 compare([n100.checkerboard_np, n100.checkerboard_py], randint_gen, [10 ** 4, 10 ** 4 + 100],
         comment="Large arrays", repeat=1)
+compare([n100.min_max_rand_matrix_np, n100.min_max_rand_matrix_py,
+        n100.min_max_rand_matrix_py_alternative], randint_gen,
+        comment="Small arrays", repeat=10)
+compare([n100.min_max_rand_matrix_np, n100.min_max_rand_matrix_py,
+        n100.min_max_rand_matrix_py_alternative], randint_gen, [10 ** 3, 10 ** 3 + 100],
+        comment="Large arrays", repeat=10)
+compare([n100.checkerboard_np, n100.checkerboard_tile_np], randint_gen, [10 ** 3, 10 ** 3 + 100],
+        comment="Large arrays", repeat=10)

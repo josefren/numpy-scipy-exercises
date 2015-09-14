@@ -118,11 +118,34 @@ def checkerboard_py(size):
     return [[(r + c) & 1 for c in range(size)] for r in range(size)]
 
 # Create a 10x10 array with random values and find the minimum and maximum values
-#
-# Z = np.random.random((10,10))
-# Zmin, Zmax = Z.min(), Z.max()
-# print(Zmin, Zmax)
+def min_max_rand_matrix_np(size):
+    Z = np.random.random((size, size))
+    return Z.min(), Z.max()
+
+def min_max_rand_matrix_py(size):
+    from random import random
+    Z = [[random() for _ in range(size)] for _ in range(size)]
+    return min(min(Z, key=min)), max(max(Z, key=max))
+
+def min_max_rand_matrix_py_alternative(size):
+    from random import random
+    Z = [[random() for _ in range(size)] for _ in range(size)]
+
+    def matrix_extr(matr, compare=min):
+        best = matr[0][0]
+        for row in matr:
+            for el in row:
+                if compare(el, best):
+                    best = el
+        return best
+    return matrix_extr(Z, lambda x, y: x < y), matrix_extr(Z, lambda x, y: x > y)
+
 # Create a checkerboard 8x8 matrix using the tile function
+def checkerboard_tile_np(size):
+    part = np.array([[0, 1], [1, 0]])
+    repeat = size // 2 + 1
+    Z = np.tile(part, (repeat, repeat))
+    return Z[:size, :size]
 #
 # Z = np.tile( np.array([[0,1],[1,0]]), (4,4))
 # print(Z)
