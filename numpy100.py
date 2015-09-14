@@ -94,12 +94,15 @@ def range_below_diagonal_py(size):
     return [[r if r - c == 1 else 0 for c in range(size)] for r in range(size)]
 
 
-
-# print(Z)
 # Create a 3x3x3 array with random values
-#
-# Z = np.random.random((3,3,3))
-# print(Z)
+def rand_3d_matrix_np(size):
+    return np.random.random((size, size, size))
+
+
+def rand_3d_matrix_py(size):
+    from random import random
+    return [[[random() for _ in range(size)] for _ in range(size)] for _ in range(size)]
+
 # Create a 8x8 matrix and fill it with a checkerboard pattern
 #
 # Z = np.zeros((8,8),dtype=int)
