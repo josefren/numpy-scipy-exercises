@@ -69,11 +69,18 @@ def non_zero_indicies_py(ar):
     """
     return [i for i in range(len(ar)) if ar[i]]
 
-#
-# nz = np.nonzero([1,2,0,0,4,0])
-# print(nz)
 # Create a 3x3 identity matrix
-#
+def identity_matrix_np(size):
+    return np.eye(size)
+
+def identity_matrix_py(size):
+    """
+    >>> identity_matrix_py(3)
+    [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    """
+    return [[int(r == c) for c in range(size)] for r in range(size)]
+
+
 # Z = np.eye(3)
 # print(Z)
 # Create a 5x5 matrix with values 1,2,3,4 just below the diagonal
